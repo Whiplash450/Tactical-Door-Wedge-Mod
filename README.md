@@ -29,11 +29,13 @@ A tactical mod for SPTarkov that introduces deployable physical door wedges to b
 ## 2. In-Game Controls & Mechanics
 
 * **Securing a Door**:
-  * Approach any closed interior door within 2.5 meters.
-  * Press **L** (configurable in F12 menu) with a wedge in your inventory.
+  * Approach any closed interior door with a Tactical Door Wedge in your inventory.
+  * Scroll through the vanilla door interaction menu using the mouse wheel.
+  * Select **"Wedge Door"** and activate it.
   * The door locks shut and cannot be opened with the handle.
 * **Retrieving a Wedge**:
-  * Look at the wedged door and press **L**.
+  * Look at the wedged door.
+  * Scroll through the interaction menu and select **"Remove Wedge"**.
   * The wedge returns to your inventory and the door unlocks.
 * **Breaching a Wedged Door**:
   * Kicking or breaching a wedged door applies damage to the wedge durability.
@@ -46,7 +48,6 @@ A tactical mod for SPTarkov that introduces deployable physical door wedges to b
 Press **F12** in-game to configure:
 * **Wedge Health**: Durability of a wedged door (Range: 1 – 1000, Default: 100).
 * **Kick Damage**: Damage dealt to wedge durability per kick (Range: 1 – 200, Default: 51).
-* **Wedge / Retrieve Hotkey**: Keyboard shortcut to wedge/unwedge doors (Default: `L`).
 
 ---
 

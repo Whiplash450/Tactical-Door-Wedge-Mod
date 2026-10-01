@@ -7,7 +7,6 @@ public static class ModConfig
 {
     public static ConfigEntry<int> WedgeHealth { get; private set; }
     public static ConfigEntry<int> KickDamage { get; private set; }
-    public static ConfigEntry<KeyboardShortcut> WedgeHotkey { get; private set; }
 
     public static void Init(ConfigFile config)
     {
@@ -29,13 +28,6 @@ public static class ModConfig
                 "Damage dealt to the door wedge durability per kick.",
                 new AcceptableValueRange<int>(1, 200)
             )
-        );
-
-        WedgeHotkey = config.Bind(
-            "Controls",
-            "Wedge / Retrieve Hotkey",
-            new KeyboardShortcut(KeyCode.L),
-            new ConfigDescription("Hotkey to wedge or remove a wedge from the door you are looking at.")
         );
     }
 }

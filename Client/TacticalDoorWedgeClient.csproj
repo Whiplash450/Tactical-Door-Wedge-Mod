@@ -76,6 +76,10 @@
       <HintPath Condition="Exists('$(TarkovManagedDir)UnityEngine.AudioModule.dll')">$(TarkovManagedDir)UnityEngine.AudioModule.dll</HintPath>
       <HintPath Condition="!Exists('$(TarkovManagedDir)UnityEngine.AudioModule.dll')">$(LocalLibDir)UnityEngine.AudioModule.dll</HintPath>
     </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath Condition="Exists('$(TarkovManagedDir)Sirenix.Serialization.dll')">$(TarkovManagedDir)Sirenix.Serialization.dll</HintPath>
+      <HintPath Condition="!Exists('$(TarkovManagedDir)Sirenix.Serialization.dll')">$(LocalLibDir)Sirenix.Serialization.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

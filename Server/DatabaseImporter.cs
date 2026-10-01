@@ -34,10 +34,12 @@ public class DatabaseImporter(
             // 1. Register Item Template
             if (tables.Templates?.Items != null && tables.Templates.Items.TryGetValue(BaseCloneItemId, out var baseItem) && baseItem != null)
             {
-                string json = jsonUtil.Serialize(baseItem);
-                var newItem = jsonUtil.Deserialize<SPTarkov.Server.Core.Models.Eft.Common.Tables.TemplateItem>(json);
-                if (newItem != null)
+                string? json = jsonUtil.Serialize(baseItem);
+                if (!string.IsNullOrEmpty(json))
                 {
+                    var newItem = jsonUtil.Deserialize<SPTarkov.Server.Core.Models.Eft.Common.Tables.TemplateItem>(json);
+                    if (newItem != null)
+                    {
                     newItem.Id = ItemId;
                     newItem.Name = "tactical_door_wedge";
                     if (newItem.Properties != null)
@@ -51,6 +53,7 @@ public class DatabaseImporter(
                     logger.Info("[TacticalDoorWedge] Registered item template: " + ItemId);
                 }
             }
+        }
 
             // 2. Register Handbook
             if (tables.Templates?.Handbook?.Items != null)
@@ -229,16 +232,19 @@ public class DatabaseImporter(
                                 if (distProp.GetValue(container) is System.Collections.IList distList && distList.Count > 0)
                                 {
                                     object sample = distList[0]!;
-                                    string distJson = jsonUtil.Serialize(sample);
-                                    object? newDist = jsonUtil.Deserialize(distJson, sample.GetType());
-                                    if (newDist != null)
+                                    string? distJson = jsonUtil.Serialize(sample);
+                                    if (!string.IsNullOrEmpty(distJson))
                                     {
-                                        var tplProp = newDist.GetType().GetProperty("Tpl");
-                                        var probProp = newDist.GetType().GetProperty("RelativeProbability");
-                                        tplProp?.SetValue(newDist, ItemId);
-                                        probProp?.SetValue(newDist, 100);
-                                        distList.Add(newDist);
-                                        injectedCount++;
+                                        object? newDist = jsonUtil.Deserialize(distJson, sample.GetType());
+                                        if (newDist != null)
+                                        {
+                                            var tplProp = newDist.GetType().GetProperty("Tpl");
+                                            var probProp = newDist.GetType().GetProperty("RelativeProbability");
+                                            tplProp?.SetValue(newDist, ItemId);
+                                            probProp?.SetValue(newDist, 100);
+                                            distList.Add(newDist);
+                                            injectedCount++;
+                                        }
                                     }
                                 }
                             }
